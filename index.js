@@ -183,6 +183,7 @@ cardsContainer.addEventListener('transitionend', (ev) => {
 		const victory = matchInfo.correctlyGuessedPairs === 8;
 		if (victory) {
 			showFinalResult('victory');
+			clearInterval(myIntervalID);
 		}
 	}
 });
