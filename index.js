@@ -22,7 +22,7 @@ let matchInfo = {
 	attempts: 0,
 	currentCard: undefined,
 	lastCard: undefined,
-	correctlyGuessedPairs: 0, //debería ser well-guessedPairs? o correctlyGuessedPairs?
+	guessedPairs: 0,
 	resetCurrentAndLastCard() {
 		matchInfo.currentCard = undefined;
 		matchInfo.lastCard = undefined;
@@ -98,7 +98,7 @@ function checkIfTheresARightGuess(lastCard, currentCard) {
 	let currentCardFront = currentCard.children[0].src;
 	let rightGuess = lastCardFront == currentCardFront;
 	if (rightGuess) {
-		matchInfo.correctlyGuessedPairs++;
+		matchInfo.guessedPairs++;
 	} else if (!rightGuess) {
 		hideFrontOfTheCard(lastCard);
 		hideFrontOfTheCard(currentCard);
@@ -131,7 +131,7 @@ function showFinalResult(result) {
 			<h1 id="message">${msg}</h1>
 			<div id="game-info"> 
 				<h4  class="game-info-title">Aciertos</h4>
-				<h4 class="game-info-data">${matchInfo.correctlyGuessedPairs.toString()}</h4>
+				<h4 class="game-info-data">${matchInfo.guessedPairs.toString()}</h4>
 				<h4 class="game-info-title">Intentos</h4>
 				<h4 class="game-info-data">${matchInfo.attempts.toString()}</h4> 
 				<h4 class="game-info-title">Segundos restantes</h3>
@@ -180,7 +180,7 @@ cardsContainer.addEventListener('transitionend', (ev) => {
 		updateAttemptsInScreen(matchInfo.attempts);
 		matchInfo.resetCurrentAndLastCard();
 		allowPointerEventsInCards();
-		const victory = matchInfo.correctlyGuessedPairs === 8;
+		const victory = matchInfo.guessedPairs === 8;
 		if (victory) {
 			showFinalResult('victory');
 			clearInterval(myIntervalID);
