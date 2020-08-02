@@ -338,4 +338,8 @@ h3,
 		width: 90px;
 		margin: 8px 16px;
 	}
+	#final-result {
+		width: 375px;
+		height: 420px;
+	}
 }
